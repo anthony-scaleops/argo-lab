@@ -1,0 +1,39 @@
+kind: Policy
+apiVersion: analysis.scaleops.sh/v1alpha1
+metadata:
+  name: gitops-policy
+  namespace: scaleops-system
+spec:
+  type: Optimize
+  policyOptimize:
+    rightSizePolicy:
+      allowEphemeralStorageReduction: false
+      windowByResource:
+        cpu: 24h
+        ephemeral-storage: 48h
+        memory: 24h
+      requestsConfigs:
+        cpu:
+          headroomPercentage: 10
+          percentilePercentage: 93
+          minAllowed: 10m
+        ephemeral-storage:
+          headroomPercentage: 5
+          percentilePercentage: 90
+        memory:
+          headroomPercentage: 5
+          percentilePercentage: 93
+          minAllowed: 20Mi
+      nodeCappingPolicy:
+        nodeCappingAuto: true
+      ephemeralStorageOptimizationEnabled: true
+    fastReaction:
+      enabled:
+        cpu: true
+        memory: true
+  hpa:
+    manageHPA: true
+  autoHealing:
+    enabledV2: true
+    enabledByResource:
+      ephemeral-storage: true
