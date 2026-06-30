@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: scaleops-alt
+  namespace: argocd
+spec: 
+  project: default
+  source:
+    repoURL: https://registry.scaleops.com/charts/
+    targetRevision: 1.30.0
+    helm:
+      values: |-
+        scaleopsToken: soc_54895383f6a2bb249dd0f43501bbb6819
+        clusterName: scaleops-lab
+        global:
+          image:
+            registry: registry.scaleops.com
+    chart: scaleops
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: scaleops-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      enabled: true
+    syncOptions:
+      - CreateNamespace=true
