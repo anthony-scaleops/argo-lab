@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-exclude
+  annotations:
+    scaleops.sh/exclude-automation: "true"
+  labels:
+    app: nginx-exclude-automation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-exclude-automation
+  template:
+    metadata:
+      labels:
+        app: nginx-exclude-automation
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable
+        ports:
+        - containerPort: 80
