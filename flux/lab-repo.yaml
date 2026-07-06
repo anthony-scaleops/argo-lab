@@ -14,7 +14,7 @@ metadata:
   uid: 659ae8de-4c53-4fb4-8479-7f5e0297e8b3
 spec:
   force: false
-  interval: 1m0s
+  interval: 10m0s
   path: ./flux
   prune: true
   sourceRef:
