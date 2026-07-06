@@ -1,0 +1,23 @@
+
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  creationTimestamp: "2026-07-06T02:04:48Z"
+  finalizers:
+  - finalizers.fluxcd.io
+  generation: 1
+  labels:
+    kustomize.toolkit.fluxcd.io/name: flux-system
+    kustomize.toolkit.fluxcd.io/namespace: flux-system
+  name: flux-system
+  namespace: flux-system
+  resourceVersion: "8694276"
+  uid: 659ae8de-4c53-4fb4-8479-7f5e0297e8b3
+spec:
+  force: false
+  interval: 1m0s
+  path: ./flux
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
