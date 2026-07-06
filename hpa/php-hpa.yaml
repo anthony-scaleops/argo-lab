@@ -9,11 +9,11 @@ spec:
   - resource:
       name: cpu
       target:
-        averageUtilization: 90
+        averageUtilization: 30
         type: Utilization
     type: Resource
   minReplicas: 5
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: php-apache
+    name: hpa
