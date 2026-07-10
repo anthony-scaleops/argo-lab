@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hpa
+  namespace: argocd
+spec: 
+  project: default
+  source:
+    path: hpa
+    repoURL: git@github.com:anthony-scaleops/argo-lab.git
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hpa
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      enabled: true
+    syncOptions:
+      - CreateNamespace=true
