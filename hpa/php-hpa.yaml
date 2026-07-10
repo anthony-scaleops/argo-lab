@@ -4,7 +4,7 @@ metadata:
   name: php-apache-hpa
   namespace: hpa
   annotations:
-     scaleops.sh/exclude-automation: "true"
+     myAnnotation: "foo"
 spec:
   maxReplicas: 10
   metrics:
