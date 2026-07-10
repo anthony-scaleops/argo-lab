@@ -3,6 +3,8 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: php-apache-hpa
   namespace: hpa
+  annotations:
+     scaleops.sh/exclude-automation: "true"
 spec:
   maxReplicas: 10
   metrics:
@@ -12,7 +14,7 @@ spec:
         averageUtilization: 30
         type: Utilization
     type: Resource
-  minReplicas: 2
+  minReplicas: 3
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment

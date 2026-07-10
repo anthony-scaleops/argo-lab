@@ -9,8 +9,10 @@ spec:
       run: php-apache
   template:
     metadata:
-      labels:
-        run: php-apache
+    annotations:
+      scaleops.sh/exclude-automation: "true"
+    labels:
+      run: php-apache
     spec:
       containers:
       - name: php-apache
